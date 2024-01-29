@@ -1,4 +1,5 @@
 #include<iostream>
+#include<gl/glew.h>
 #include<GLFW/glfw3.h>
 #include<imgui.h>
 #include<imgui_impl_glfw.h>
@@ -23,6 +24,8 @@ int main()
 	}
 
 	glfwMakeContextCurrent(window);
+
+	glewInit();
 
 	//imgui here
 	IMGUI_CHECKVERSION();
