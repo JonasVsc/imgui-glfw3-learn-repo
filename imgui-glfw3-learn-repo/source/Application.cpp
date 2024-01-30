@@ -1,21 +1,16 @@
-#include<iostream>
-#include<gl/glew.h>
-#include<GLFW/glfw3.h>
-#include<imgui.h>
-#include<imgui_impl_glfw.h>
-#include<imgui_impl_opengl3.h>
-
+#include"Game/game.h"
 
 int main()
 {
-
+	// Game
+	/*
 	GLFWwindow* window;
 
 
 	if (!glfwInit())
 		return -1;
 
-	window = glfwCreateWindow(1280, 720, "ImGui-GLFW-OpenGL Application", 0, 0);
+	window = glfwCreateWindow(1280, 720, "ImGui-GLFW-OpenGL Application", NULL, NULL);
 
 	if (!window)
 	{
@@ -37,11 +32,12 @@ int main()
 	ImGui_ImplGlfw_InitForOpenGL(window, true);
 	ImGui_ImplOpenGL3_Init();
 
-
 	while (!glfwWindowShouldClose(window))
 	{
 		glfwPollEvents();
+
 		//imgui here
+
 		ImGui_ImplOpenGL3_NewFrame();
 		ImGui_ImplGlfw_NewFrame();
 		ImGui::NewFrame();
@@ -62,5 +58,10 @@ int main()
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
 	glfwTerminate();
+	return 0;
+	*/
+	Game game;
+	game.run();
+
 	return 0;
 }
