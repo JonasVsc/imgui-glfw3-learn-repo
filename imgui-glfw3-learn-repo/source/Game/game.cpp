@@ -116,7 +116,7 @@ Game::Game()
 	glBindVertexArray(0);
 
 
-	// imguiInitConfig();
+	imguiInitConfig();
 
 }
 
@@ -141,15 +141,23 @@ void Game::run()
 		glClearColor(0, 1, 0.5f, 0);
 		glClear(GL_COLOR_BUFFER_BIT);
 
+		updateGUI();
+
+		
+
+
 		glUseProgram(mShaderProgram);
 		glBindVertexArray(mVAO);
 		glDrawArrays(GL_TRIANGLES, 0, 3);
+
+		ImGui::Render();
+		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 		glfwSwapBuffers(mWindow);
 		glfwPollEvents();
 	}
 
-	// shutdown();
+	shutdown();
 }
 
 void Game::render()
@@ -157,8 +165,8 @@ void Game::render()
 	glClearColor(0, 1, 0.5f, 0);
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	// ImGui::Render();
-	// ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+	ImGui::Render();
+	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
 	glfwSwapBuffers(mWindow);
 }
