@@ -5,6 +5,8 @@
 #include<imgui_impl_glfw.h>
 #include<imgui_impl_opengl3.h>
 
+
+
 class Game {
 
 public:
@@ -13,6 +15,7 @@ public:
 
 private:
 	void render();
+	void update();
 	void updateGUI();
 	void processInput();
 	void shutdown();
@@ -21,6 +24,9 @@ private:
 
 private:
 	GLFWwindow* mWindow;
+	unsigned int mVAO;
+	unsigned int mVBO;
+	unsigned int mShaderProgram;
 
 
 };
