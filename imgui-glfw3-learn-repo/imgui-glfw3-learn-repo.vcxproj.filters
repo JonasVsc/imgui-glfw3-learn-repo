@@ -42,6 +42,9 @@
     <ClCompile Include="source\Game\game.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="source\Shader\shader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vendor\imgui\imconfig.h">
@@ -74,5 +77,12 @@
     <ClInclude Include="source\Game\game.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="source\Shader\shader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="shaders\fragment.fs" />
+    <None Include="shaders\vertex.vs" />
   </ItemGroup>
 </Project>
