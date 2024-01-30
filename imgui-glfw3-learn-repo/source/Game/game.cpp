@@ -116,11 +116,11 @@ Game::Game()
 	glBindVertexArray(0);
 
 
-	imguiInitConfig();
+	imguiInit();
 
 }
 
-void Game::imguiInitConfig()
+void Game::imguiInit()
 {
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
@@ -136,6 +136,7 @@ void Game::run()
 {
 	while (!glfwWindowShouldClose(mWindow))
 	{
+		glfwPollEvents();
 		processInput();
 
 		glClearColor(0, 1, 0.5f, 0);
@@ -143,18 +144,12 @@ void Game::run()
 
 		updateGUI();
 
-		
-
-
 		glUseProgram(mShaderProgram);
 		glBindVertexArray(mVAO);
 		glDrawArrays(GL_TRIANGLES, 0, 3);
 
-		ImGui::Render();
-		ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
-		glfwSwapBuffers(mWindow);
-		glfwPollEvents();
+		render();
 	}
 
 	shutdown();
@@ -162,9 +157,6 @@ void Game::run()
 
 void Game::render()
 {
-	glClearColor(0, 1, 0.5f, 0);
-	glClear(GL_COLOR_BUFFER_BIT);
-
 	ImGui::Render();
 	ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 
@@ -181,7 +173,7 @@ void Game::updateGUI()
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
-	ImGui::ShowDemoWindow();
+	ImGui::Text("Qualquer coisa aqui");
 }
 
 void Game::processInput()

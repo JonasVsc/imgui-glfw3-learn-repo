@@ -19,7 +19,7 @@ private:
 	void updateGUI();
 	void processInput();
 	void shutdown();
-	void imguiInitConfig();
+	void imguiInit();
 
 
 private:
