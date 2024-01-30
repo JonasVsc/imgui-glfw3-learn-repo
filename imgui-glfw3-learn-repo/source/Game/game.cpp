@@ -1,32 +1,16 @@
 #include"game.h"
 
 Game::Game()
-	:	mWindow()
-{
-	// glfw initi and configure
-	glfwInitializationAndConfiguration();
-
-	// glfw window creation
-	glfwWindowCreation();
-
-	// glew init
-	glewInit();
-
-	//imgui initi and configure
-	imguiInitializationAndConfiguration();
-}
-
-void Game::glfwInitializationAndConfiguration()
+	: mWindow()
 {
 	if (!glfwInit())
 	{
 		std::cerr << "ERROR::GLFW Init";
 		exit(-1);
 	}
-}
 
-void Game::glfwWindowCreation()
-{
+	mWindow = glfwCreateWindow(1280, 720, "OpenGL Application", NULL, NULL);
+
 	if (!mWindow)
 	{
 		glfwTerminate();
@@ -34,10 +18,9 @@ void Game::glfwWindowCreation()
 	}
 
 	glfwMakeContextCurrent(mWindow);
-}
+	glewInit();
 
-void Game::imguiInitializationAndConfiguration()
-{
+	//imgui here
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO();
@@ -46,18 +29,14 @@ void Game::imguiInitializationAndConfiguration()
 
 	ImGui_ImplGlfw_InitForOpenGL(mWindow, true);
 	ImGui_ImplOpenGL3_Init();
+
 }
-
-
 
 void Game::run()
 {
-	// application loop
 	while (!glfwWindowShouldClose(mWindow))
 	{
 		glfwPollEvents();
-		processInput();
-
 		updateGUI();
 		render();
 	}
@@ -81,7 +60,7 @@ void Game::updateGUI()
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
-	ImGui::Text("OOP OpenGL");
+	ImGui::ShowDemoWindow();
 }
 
 void Game::shutdown()
@@ -90,13 +69,5 @@ void Game::shutdown()
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
 	glfwTerminate();
-}
-
-void Game::processInput()
-{
-	if (glfwGetKey(mWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS)
-	{
-		glfwSetWindowShouldClose(mWindow, true);
-	}
 }
 
