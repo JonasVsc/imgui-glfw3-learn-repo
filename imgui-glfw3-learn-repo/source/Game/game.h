@@ -10,9 +10,15 @@ class Game {
 public:
 	Game();
 	void run();
+
+private:
 	void render();
 	void updateGUI();
+	void processInput();
 	void shutdown();
+	void glfwInitializationAndConfiguration();
+	void glfwWindowCreation();
+	void imguiInitializationAndConfiguration();
 
 
 private:

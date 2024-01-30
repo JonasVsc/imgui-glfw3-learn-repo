@@ -3,14 +3,30 @@
 Game::Game()
 	:	mWindow()
 {
+	// glfw initi and configure
+	glfwInitializationAndConfiguration();
+
+	// glfw window creation
+	glfwWindowCreation();
+
+	// glew init
+	glewInit();
+
+	//imgui initi and configure
+	imguiInitializationAndConfiguration();
+}
+
+void Game::glfwInitializationAndConfiguration()
+{
 	if (!glfwInit())
 	{
 		std::cerr << "ERROR::GLFW Init";
 		exit(-1);
 	}
+}
 
-	mWindow = glfwCreateWindow(1280, 720, "OpenGL Application", NULL, NULL);
-
+void Game::glfwWindowCreation()
+{
 	if (!mWindow)
 	{
 		glfwTerminate();
@@ -18,9 +34,10 @@ Game::Game()
 	}
 
 	glfwMakeContextCurrent(mWindow);
-	glewInit();
+}
 
-	//imgui here
+void Game::imguiInitializationAndConfiguration()
+{
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO();
@@ -29,14 +46,18 @@ Game::Game()
 
 	ImGui_ImplGlfw_InitForOpenGL(mWindow, true);
 	ImGui_ImplOpenGL3_Init();
-
 }
+
+
 
 void Game::run()
 {
+	// application loop
 	while (!glfwWindowShouldClose(mWindow))
 	{
 		glfwPollEvents();
+		processInput();
+
 		updateGUI();
 		render();
 	}
@@ -60,7 +81,7 @@ void Game::updateGUI()
 	ImGui_ImplOpenGL3_NewFrame();
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
-	ImGui::ShowDemoWindow();
+	ImGui::Text("OOP OpenGL");
 }
 
 void Game::shutdown()
@@ -69,5 +90,13 @@ void Game::shutdown()
 	ImGui_ImplGlfw_Shutdown();
 	ImGui::DestroyContext();
 	glfwTerminate();
+}
+
+void Game::processInput()
+{
+	if (glfwGetKey(mWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+	{
+		glfwSetWindowShouldClose(mWindow, true);
+	}
 }
 
