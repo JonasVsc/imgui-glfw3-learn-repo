@@ -21,6 +21,12 @@ Game::Game()
 	glewInit();
 
 	//imgui here
+	imguiInitConfig();
+
+}
+
+void Game::imguiInitConfig()
+{
 	IMGUI_CHECKVERSION();
 	ImGui::CreateContext();
 	ImGuiIO& io = ImGui::GetIO();
@@ -29,7 +35,6 @@ Game::Game()
 
 	ImGui_ImplGlfw_InitForOpenGL(mWindow, true);
 	ImGui_ImplOpenGL3_Init();
-
 }
 
 void Game::run()
@@ -37,6 +42,8 @@ void Game::run()
 	while (!glfwWindowShouldClose(mWindow))
 	{
 		glfwPollEvents();
+		processInput();
+
 		updateGUI();
 		render();
 	}
@@ -61,6 +68,14 @@ void Game::updateGUI()
 	ImGui_ImplGlfw_NewFrame();
 	ImGui::NewFrame();
 	ImGui::ShowDemoWindow();
+}
+
+void Game::processInput()
+{
+	if (glfwGetKey(mWindow, GLFW_KEY_ESCAPE) == GLFW_PRESS)
+	{
+		glfwSetWindowShouldClose(mWindow, true);
+	}
 }
 
 void Game::shutdown()

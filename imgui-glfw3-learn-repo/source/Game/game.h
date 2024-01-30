@@ -16,9 +16,7 @@ private:
 	void updateGUI();
 	void processInput();
 	void shutdown();
-	void glfwInitializationAndConfiguration();
-	void glfwWindowCreation();
-	void imguiInitializationAndConfiguration();
+	void imguiInitConfig();
 
 
 private:
